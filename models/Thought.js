@@ -32,10 +32,6 @@ const ReactionSchema = new Schema(
 
 const ThoughtSchema = new Schema(
   {
-    username: {
-      type: String,
-      required: true
-    },
     thoughtText: {
       type: String,
       required: true,
@@ -46,6 +42,10 @@ const ThoughtSchema = new Schema(
       type: Date,
       default: Date.now,
       get: createdAtVal => dateFormat(createdAtVal)
+    },
+    username: {
+      type: String,
+      required: true
     },
     // use ReactionSchema to validate data for a reaction
     reactions: [ReactionSchema]
