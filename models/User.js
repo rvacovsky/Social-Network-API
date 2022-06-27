@@ -1,17 +1,24 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
+const validator = require('validator');
 
 const UserSchema = new Schema(
   {
     username: {
       type: String,
       required: true,
+      unique: true,
       trim: true
     },
     email: {
       type: String,
       required: true,
-      trim: true
+      unique: true,
+      validate: {
+        validator: validator.isEmail,
+        message: '{VALUE} is not a valid email',
+        isAsync: false
+      }
     },
     createdAt: {
       type: Date,
@@ -23,6 +30,12 @@ const UserSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Thought'
       }
+    ],
+    friends: [
+      {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+      }
     ]
   },
   {
@@ -32,21 +45,7 @@ const UserSchema = new Schema(
     },
     // prevents virtuals from creating duplicate of _id as `id`
     id: false
-  },
-  // friends: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //     ref: 'User'
-  //   }
-  // ]
-  // },
-  // {
-  //   toJSON: {
-  //     virtuals: true,
-  //     getters: true
-  //   },
-  //   // prevents virtuals from creating duplicate of _id as `id`
-  //   id: false
+  }
 );
 
 // get total count of thoughts and reactions on retrieval

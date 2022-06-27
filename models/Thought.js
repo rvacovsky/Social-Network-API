@@ -10,12 +10,12 @@ const ReactionSchema = new Schema(
     },
     reactionBody: {
       type: String,
-      required: true
+      required: true,
+      maxLength: [280, 'Exceeds length for reaction post']
     },
     username: {
       type: String,
-      required: true,
-      trim: true
+      required: true
     },
     createdAt: {
       type: Date,
@@ -38,7 +38,9 @@ const ThoughtSchema = new Schema(
     },
     thoughtText: {
       type: String,
-      required: true
+      required: true,
+      minLength: [1, 'Please provide your thought here!'],
+      maxLength: [280, 'Exceeds length for thought post']
     },
     createdAt: {
       type: Date,
