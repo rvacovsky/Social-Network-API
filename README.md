@@ -22,3 +22,7 @@ When the user tests API POST and DELETE routes in Insomnia, they are able to suc
 * [Mongoose](https://mongoosejs.com/)
 * [Express](https://expressjs.com/)
 * [Insomnia](https://docs.insomnia.rest/)
+
+## Link to Insomnia Video Demo
+
+https://drive.google.com/file/d/1DDNZsNyWL6sJ5JOCJnX9npyZkk7pF-Rp/view
